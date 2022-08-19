@@ -1,6 +1,6 @@
-# despesas_pessoais
+# Despesas Pessoais
 
-A new Flutter project.
+Este é um projeto de aplicativo mobile feito em flutter.
 
 ## Getting Started
 
