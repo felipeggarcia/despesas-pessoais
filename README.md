@@ -1,16 +1,9 @@
+## br
 # Despesas Pessoais
 
-Este é um projeto de aplicativo mobile feito em flutter.
+Este é um projeto de aplicativo mobile feito em flutter 3.0.5 com o intuito de praticar as habilidades com este framework, na medida que eu for avançando no projeto vou detalhando melhor este arquivo.
 
-## Getting Started
+## en
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Personal expenses
+This is a mobile application project made in flutter 3.0.5 in order to practice skills with this framework, as I advance in the project I will detail this file better.
