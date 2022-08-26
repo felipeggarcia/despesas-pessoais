@@ -1,24 +1,60 @@
-// ignore_for_file: deprecated_member_use, avoid_print
-
-import 'package:despesas_pessoais/components/transaction_form.dart';
 import 'package:flutter/material.dart';
-import 'components/transaction_user.dart';
+import 'dart:math';
+import 'components/transaction_form.dart';
+import 'components/transaction_list.dart';
+import 'models/transaction.dart';
 
-main() => runApp(ExpensesApp());
+main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
+  const ExpensesApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage());
+    return const MaterialApp(home: MyHomePage());
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'Novo Tênis de Corrida',
+      value: 310.76,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Conta de Luz',
+      value: 211.30,
+      date: DateTime.now(),
+    ),
+  ];
+
+  _addTransaction(String title, double value) {
+    final newTransaction = Transaction(
+      id: Random().nextDouble().toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
+
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (_) {
-        return TransactionForm(null);
+        return TransactionForm(_addTransaction);
       },
     );
   }
@@ -28,34 +64,33 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Despesas Pessoais'),
-        actions: <Widget>[
+        actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
+            onPressed: () => _openTransactionFormModal(context),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
+          children: [
+            const SizedBox(
               child: Card(
-                color: Colors.blue[100],
+                color: Colors.blue,
+                child: Text('Gráfico'),
                 elevation: 5,
-                child: const Text('Gráfico?'),
               ),
             ),
-            TransactionUser(),
+            TransactionList(_transactions),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
+        child: const Icon(Icons.add),
+        onPressed: () => _openTransactionFormModal(context),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
