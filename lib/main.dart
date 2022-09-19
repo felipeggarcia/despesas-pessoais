@@ -10,7 +10,13 @@ class ExpensesApp extends StatelessWidget {
   const ExpensesApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: MyHomePage());
+    return MaterialApp(
+        home: const MyHomePage(),
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'Quicksand',
+        ));
   }
 }
 
@@ -48,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _transactions.add(newTransaction);
     });
+    Navigator.of(context).pop();
   }
 
   _openTransactionFormModal(BuildContext context) {
@@ -63,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Despesas Pessoais'),
+        title: const Text('Despesas Pessoais',),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -77,7 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             const SizedBox(
               child: Card(
-                color: Colors.blue,
                 child: Text('Gráfico'),
                 elevation: 5,
               ),
